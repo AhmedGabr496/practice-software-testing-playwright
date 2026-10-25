@@ -1,0 +1,17 @@
+# Dependencies
+node_modules/
+
+# Playwright output
+test-results/
+playwright-report/
+blob-report/
+playwright/.cache/
+playwright/.auth/
+
+# Local environment
+.env
+
+# OS / editor
+.DS_Store
+.vscode/*
+!.vscode/extensions.json
