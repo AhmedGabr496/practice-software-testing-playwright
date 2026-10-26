@@ -15,3 +15,9 @@ playwright/.auth/
 .DS_Store
 .vscode/*
 !.vscode/extensions.json
+
+# Playwright
+/playwright-report/
+/blob-report/
+/playwright/.cache/
+/playwright/.auth/
