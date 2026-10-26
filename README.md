@@ -52,15 +52,3 @@ Each run records a video. Traces and screenshots are kept for failed tests, and 
 
 Other scripts: `npm run lint`, `npm run typecheck`, `npm run format`.
 
-### CI
-
-[GitHub Actions](.github/workflows/playwright.yml) runs the suite on every push and pull request to `main` and uploads the HTML report as an artifact.
-
-## Things to know about the demo site
-
-These are behaviors of the site that the tests had to account for:
-
-- **Billing address is validated against the postcode.** When an order is placed, the API looks up the postcode and rejects the order if the city or state doesn't match. The lookup returns made-up but consistent data, so `billingAddress` in `test-data.ts` uses the values it returns for `US 90012`. If the lookup is down, the API accepts the order anyway, so a wrong address only fails some of the time.
-- **Stock runs out.** Every checkout run places a real order on a shared site. The checkout test checks stock through the API first, so if the product runs out it fails straight away with a clear message. In that case, change the product in `test-data.ts`.
-- **Checkout payment takes two clicks.** The first click on `finish` checks the payment details, and the second one places the order.
-- **The billing form pre-fills the saved address after it opens.** `fillBillingAddress()` waits for that before typing, otherwise the pre-filled address can overwrite the test's input.
